@@ -1,67 +1,67 @@
-import React from 'react'
+import React from 'react';
 
 class Formulaire extends React.Component {
 
-    state = {
-        length: this.props.length
-    }
+	state = {
+		length: this.props.length
+	}
 
-    createMessage = event => {
-        event.preventDefault()
-        console.log(this.message.value)
-        const message = {
-            pseudo: this.props.pseudo,
-            message: this.message.value
-        }
+	createMessage = event => {
+		event.preventDefault();
 
-        this.props.addMessage(message)
+		const message = {
+			pseudo: this.props.pseudo,
+			message: this.message.value
+		}
+		
+		this.props.addMessage(message);
 
-        // reset du formulaire d'envoi des messages
-        const length = this.props.length
-        this.setState({ length })
-        this.messageForm.reset()
-    }
+		// Reset
+		const length = this.props.length;
+		this.setState({ length });
+		this.messageForm.reset();
+	}
 
-    compteur = event => {
-        const length = this.props.length - this.message.value.length
-        this.setState({ length })
-    }
+	compteur = event => {
+		const length = this.props.length - this.message.value.length;
+		this.setState({ length });
+	}
 
-    render() {
-        return (
-            <form 
-                className="form" 
-                onSubmit={(e) => this.createMessage(e)}
-                ref={(input) => this.messageForm = input}
-            >
+	render() {
+		return (
+			<form 
+				className="form"
+				onSubmit={(e) => this.createMessage(e)}
+				ref={(input) => this.messageForm = input} 
+			>
 
-                <textarea 
-                    required 
-                    maxLength={this.props.length}
-                    ref={input => this.message = input}
-                    onChange={(e) => this.compteur(e)} >
-                </textarea>
+				<textarea 
+					required
+					maxLength={this.props.length}
+					ref={input => this.message = input}
+					onChange={(e) => this.compteur(e)} >
+				</textarea>
 
-                <div 
-                    className="info" 
-                    ref={input => this.messageInfo = input}
-                >
-                    {this.state.length}
-                </div>
+				<div
+					className="info"
+					ref={input => this.messageInfo = input} 
+				>
+						{this.state.length}
+				</div>
 
-                <button type="submit">
-                    Envoyer!
-                </button>
+				<button type="submit" >
+						Envoyer!
+				</button>
 
-            </form>
-        )
-    }
+			</form>
+		)
+	}
 
-    static propTypes = {
-        addMessage: React.propTypes.func.isRequired,
-        pseudo: React.PropTypes.string.isRequired,
-        length: React.PropTypes.number.isRequired
-    }
+	static propTypes = {
+		addMessage: React.PropTypes.func.isRequired,
+		pseudo: React.PropTypes.string.isRequired,
+		length: React.PropTypes.number.isRequired
+	};
 }
 
-export default Formulaire
+export default Formulaire;
