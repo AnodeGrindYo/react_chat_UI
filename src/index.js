@@ -22,6 +22,6 @@ const Root = () => {
 }
 
 render(
-    <App />,
+    <Root />,
     document.getElementById('root')
 );
