@@ -5,7 +5,7 @@ class Connexion extends React.Component {
     goToChat = event => {
         event.preventDefault()
         // récupération du pseudo
-        console.log(this.pseudoInput.value)
+        const pseudo = this.pseudoInput.value
         // changement d'url
         this.context.router.transitionTo(`/pseudo/${pseudo}`)
     }

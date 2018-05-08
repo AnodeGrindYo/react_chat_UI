@@ -23,9 +23,9 @@ class App extends React.Component {
             <div className="box">
                 <div>
                     <div className="messages">
-                        <Message pseudo="adrien"/>
+                        <Message pseudo="adrien" />
                     </div>
-                    <Formulaire addMessage={this.addMessage} />
+                    <Formulaire addMessage={this.addMessage} pseudo={this.props.params.pseudo} length={140} />
                 </div>
             </div>
         )

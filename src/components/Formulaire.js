@@ -2,15 +2,29 @@ import React from 'react'
 
 class Formulaire extends React.Component {
 
+    state = {
+        length: this.props.length
+    }
+
     createMessage = event => {
         event.preventDefault()
         console.log(this.message.value)
-        const message = this.message.value
+        const message = {
+            pseudo: this.props.pseudo,
+            message: this.message.value
+        }
 
         this.props.addMessage(message)
 
         // reset du formulaire d'envoi des messages
+        const length = this.props.length
+        this.setState({ length })
         this.messageForm.reset()
+    }
+
+    compteur = event => {
+        const length = this.props.length - this.message.value.length
+        this.setState({ length })
     }
 
     render() {
@@ -23,13 +37,16 @@ class Formulaire extends React.Component {
 
                 <textarea 
                     required 
-                    maxLength="140" 
+                    maxLength={this.props.length}
                     ref={input => this.message = input}
-                >
+                    onChange={(e) => this.compteur(e)} >
                 </textarea>
 
-                <div className="info">
-                    140
+                <div 
+                    className="info" 
+                    ref={input => this.messageInfo = input}
+                >
+                    {this.state.length}
                 </div>
 
                 <button type="submit">
@@ -38,6 +55,12 @@ class Formulaire extends React.Component {
 
             </form>
         )
+    }
+
+    static propTypes = {
+        addMessage: React.propTypes.func.isRequired,
+        pseudo: React.PropTypes.string.isRequired,
+        length: React.PropTypes.number.isRequired
     }
 }
 
