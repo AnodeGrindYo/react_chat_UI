@@ -6,7 +6,8 @@ class Connexion extends React.Component {
         event.preventDefault()
         // récupération du pseudo
         console.log(this.pseudoInput.value)
-        // TODO : changement d'url
+        // changement d'url
+        this.context.router.transitionTo(`/pseudo/${pseudo}`)
     }
 
     render() {
@@ -18,6 +19,10 @@ class Connexion extends React.Component {
                 </form>
             </div>
         )
+    }
+
+    static contextTypes = {
+        router: React.PropTypes.object
     }
 }
 
