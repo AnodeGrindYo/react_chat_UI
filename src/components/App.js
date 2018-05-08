@@ -62,6 +62,10 @@ class App extends React.Component {
             </div>
         )
     }
+
+    static propTypes = {
+        params: React.PropTypes.object.isRequired
+    }
 }
 
 export default App
